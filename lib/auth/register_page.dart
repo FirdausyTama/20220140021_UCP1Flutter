@@ -9,8 +9,11 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController namaController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController nohpController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController konfirmasiController = TextEditingController();
   bool isPasswordVisible = false;
 
   @override
@@ -54,7 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ],
               ),
               TextFormField(
-                controller: emailController,
+                controller: namaController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -126,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                             TextFormField(
-                              controller: passwordController,
+                              controller: nohpController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
@@ -220,7 +223,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             TextFormField(
                               obscureText: !isPasswordVisible,
-                              controller: passwordController,
+                              controller: konfirmasiController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
