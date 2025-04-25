@@ -8,8 +8,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
+   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                spacing: 15,
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage('assets/images/profil.jpg'),
+                  ),
+                  Column(
+                    children: [
+                      Text('Selamat Datang'),
+                      Text(''),
+                      
+                    ],
+                  ),
+
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
