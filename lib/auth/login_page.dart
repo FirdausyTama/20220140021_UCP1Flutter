@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ucp1/auth/register_page.dart';
+import 'package:ucp1/home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -129,10 +130,10 @@ class _LoginPageState extends State<LoginPage> {
                 child: FilledButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LoginPage(),
+                          builder: (context) => const HomePage(),
                         ),
                       );
                     }
