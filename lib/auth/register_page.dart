@@ -48,7 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   const SizedBox(height: 45),
                   const Padding(
-                    padding: EdgeInsets.only(top: 16.0),
+                    padding: EdgeInsets.only(top: 16.0, bottom: 10.0),
                     child: Text(
                       'Nama Lengkap',
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -86,7 +86,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Padding(
-                              padding: EdgeInsets.only(bottom: 8.0),
+                              padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
                               child: Text(
                                 'Email',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -122,7 +122,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Padding(
-                              padding: EdgeInsets.only(bottom: 8.0),
+                              padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
                               child: Text(
                                 'No HP',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -163,7 +163,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Padding(
-                              padding: EdgeInsets.only(bottom: 8.0),
+                              padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                               child: Text(
                                 'Password',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -193,6 +193,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       isPasswordVisible
                                           ? Icons.visibility_rounded
                                           : Icons.visibility_off_rounded,
+                                      color: Colors.grey,
                                     ),
                                   ),
                                 ),
@@ -215,7 +216,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Padding(
-                              padding: EdgeInsets.only(bottom: 8.0),
+                              padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                               child: Text(
                                 'Konfirmasi Password',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -245,6 +246,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       isPasswordVisible
                                           ? Icons.visibility_rounded
                                           : Icons.visibility_off_rounded,
+                                      color: Colors.grey,
                                     ),
                                   ),
                                 ),
@@ -281,7 +283,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       );
                     }
                   },
-                  style: FilledButton.styleFrom(backgroundColor: Colors.blue),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
                   child: Text('Daftar'),
                 ),
               ),
@@ -296,9 +303,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   Center(
                     child: TextButton(
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(builder: (context) => LoginPage()),
+                          (Route<dynamic> route) => false,
                         );
                       },
                       style: TextButton.styleFrom(padding: EdgeInsets.all(5)),

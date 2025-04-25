@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucp1/auth/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -33,10 +34,6 @@ class _LoginPageState extends State<LoginPage> {
                 height: 200,
                 width: 200,
               ),
-              const SizedBox(
-                height: 0,
-              ),
-
               Text(
                 'SELAMAT DATANG KEMBALI',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
@@ -112,6 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                         isPasswordVisible
                             ? Icons.visibility_rounded
                             : Icons.visibility_off_rounded,
+                        color: Colors.grey,
                       ),
                     ),
                   ),
@@ -126,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 100),
               SizedBox(
-                width: 1000,
+                width: 400,
                 height: 56,
                 child: FilledButton(
                   onPressed: () {
@@ -139,7 +137,12 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     }
                   },
-                  style: FilledButton.styleFrom(backgroundColor: Colors.blue),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
                   child: Text('Masuk'),
                 ),
               ),
@@ -156,7 +159,9 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          MaterialPageRoute(
+                            builder: (context) => RegisterPage(),
+                          ),
                         );
                       },
                       style: TextButton.styleFrom(padding: EdgeInsets.all(5)),
