@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  final String email;
+  const HomePage({super.key, required this.email});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -24,13 +20,9 @@ class _HomePageState extends State<HomePage> {
                     backgroundImage: AssetImage('assets/images/profil.jpg'),
                   ),
                   Column(
-                    children: [
-                      Text('Selamat Datang'),
-                      Text(''),
-                      
-                    ],
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [Text('Selamat Datang'), Text(email)],
                   ),
-
                 ],
               ),
             ],
