@@ -8,13 +8,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
+      body: Column(
           children: [
             Container(
               width: double.infinity,
               color: Colors.blue,
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.only(top: 35, left: 10, right: 10, bottom: 20),
               child: Row(
                 children: [
                   CircleAvatar(
@@ -58,6 +57,20 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
+
+            Padding(
+              padding: EdgeInsets.only(top: 30, bottom: 30, left: 10, right: 10),
+              child: Column(
+                children: [
+                  Container(
+                    width: 380,
+                    height: 150,
+                    color: Colors.blue, 
+                  ),
+                ],
+              ),
+            ),
+
             Column(
               children: [
                 Row(
@@ -140,7 +153,7 @@ class HomePage extends StatelessWidget {
                 ),
 
                 SizedBox(
-                  width: 500,
+                  width: 400,
                   height: 220,
                   child: Padding(
                     padding: EdgeInsets.all(10),
@@ -176,7 +189,6 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ],
-        ),
       ),
     );
   }
