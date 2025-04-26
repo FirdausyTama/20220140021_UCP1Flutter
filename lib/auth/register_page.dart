@@ -279,7 +279,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const HomePage(),
+                          builder: (context) => HomePage(
+                            email: emailController.text,
+                          ),
                         ),
                         (Route<dynamic> route) => false,
                       );
