@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.blue,
       body: SafeArea(
         child: Column(
           children: [
@@ -43,7 +44,11 @@ class HomePage extends StatelessWidget {
                   ),
 
                   IconButton(
-                    icon: Icon(Icons.logout_outlined, color: Colors.white, size: 28),
+                    icon: Icon(
+                      Icons.logout_outlined,
+                      color: Colors.white,
+                      size: 28,
+                    ),
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
@@ -53,6 +58,65 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            Column(
+              children: [
+                SizedBox(
+                  child: FilledButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        (Route<dynamic> route) => false,
+                      );
+                    },
+                    style: FilledButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Text('Data Piket'),
+                  ),
+                ),
+                SizedBox(
+                  child: FilledButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        (Route<dynamic> route) => false,
+                      );
+                    },
+                    style: FilledButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Text('Data Pelanggan'),
+                  ),
+                ),
+
+                SizedBox(
+                  child: FilledButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        (Route<dynamic> route) => false,
+                      );
+                    },
+                    style: FilledButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Text('Barang Masuk/Keluar'),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
