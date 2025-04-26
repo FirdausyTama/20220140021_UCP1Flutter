@@ -8,7 +8,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.blue,
       body: SafeArea(
         child: Column(
           children: [
@@ -61,59 +60,117 @@ class HomePage extends StatelessWidget {
             ),
             Column(
               children: [
-                SizedBox(
-                  child: FilledButton(
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                        (Route<dynamic> route) => false,
-                      );
-                    },
-                    style: FilledButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 200,
+                      height: 200,
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: FilledButton(
+                          onPressed: () {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage(),
+                              ),
+                              (Route<dynamic> route) => false,
+                            );
+                          },
+                          style: FilledButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              
+                              Icon(Icons.touch_app_outlined, size: 50, color: Colors.white),
+                              SizedBox(height: 8),
+                              Text(
+                                'Data Piket',
+                                style: TextStyle(color: Colors.white, fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                    child: Text('Data Piket'),
-                  ),
-                ),
-                SizedBox(
-                  child: FilledButton(
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                        (Route<dynamic> route) => false,
-                      );
-                    },
-                    style: FilledButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                    SizedBox(
+                      width: 200,
+                      height: 200,
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: FilledButton(
+                          onPressed: () {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage(),
+                              ),
+                              (Route<dynamic> route) => false,
+                            );
+                          },
+                          style: FilledButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.person_add_sharp, size: 50, color: Colors.white),
+                              SizedBox(height: 8),
+                              Text(
+                                'Data Pelanggan',
+                                style: TextStyle(color: Colors.white, fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                    child: Text('Data Pelanggan'),
-                  ),
+                  ],
                 ),
 
                 SizedBox(
-                  child: FilledButton(
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                        (Route<dynamic> route) => false,
-                      );
-                    },
-                    style: FilledButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                  width: 500,
+                  height: 220,
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: FilledButton(
+                      onPressed: () {
+                        //Navigator.pushAndRemoveUntil(
+                          //context,
+                          //MaterialPageRoute(builder: (context) => LoginPage()),
+                          //(Route<dynamic> route) => false,
+                        //);
+                      },
+                      style: FilledButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.article_outlined, size: 50, color: Colors.white),
+                          SizedBox(height: 8),
+                          Text(
+                            'Barang Masuk/Keluar',
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
                       ),
                     ),
-                    child: Text('Barang Masuk/Keluar'),
                   ),
                 ),
               ],
