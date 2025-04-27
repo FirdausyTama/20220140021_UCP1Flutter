@@ -10,6 +10,16 @@ class DataPelanggan extends StatefulWidget {
 class _DataPelangganState extends State<DataPelanggan> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue, 
+        centerTitle: true, 
+        iconTheme: IconThemeData(color: Colors.white),
+        title: Text(
+          'Data Pelanggan',
+          style: TextStyle(color: Colors.white), 
+        ),
+      ),
+    );
   }
 }

@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class DataPiket extends StatefulWidget {
-  const DataPiket({super.key});
+class DetailPiket extends StatelessWidget {
+  const DetailPiket({super.key});
 
-  @override
-  State<DataPiket> createState() => _DataPiketState();
-}
-
-class _DataPiketState extends State<DataPiket> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +11,7 @@ class _DataPiketState extends State<DataPiket> {
         centerTitle: true, 
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
-          'Piket Gudang',
+          'Detail Piket',
           style: TextStyle(color: Colors.white), 
         ),
       ),
