@@ -83,8 +83,8 @@ class _DataBarangState extends State<DataBarang> {
 
   void calculateTotalPrice() {
     int jumlahBarang = int.tryParse(barangController.text) ?? 0;
-    double hargaSatuan = _selectedJenisBarang != null ? 
-                        hargaBarang[_selectedJenisBarang]! : 0;
+    double hargaSatuan =
+        _selectedJenisBarang != null ? hargaBarang[_selectedJenisBarang]! : 0;
 
     setState(() {
       totalHarga = (jumlahBarang * hargaSatuan).toInt();
@@ -98,7 +98,10 @@ class _DataBarangState extends State<DataBarang> {
         backgroundColor: Colors.blue,
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
-        title: const Text('Pendataan Barang', style: TextStyle(color: Colors.white)),
+        title: const Text(
+          'Pendataan Barang',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -152,17 +155,18 @@ class _DataBarangState extends State<DataBarang> {
                 },
               ),
               const SizedBox(height: 10),
-              const Text(
-                'Jenis Transaksi',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+
               const SizedBox(height: 8),
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  hintText: 'Jenis Transaksi',
+                  labelText: 'Jenis Transaksi',
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 16,
+                  ),
                 ),
                 value: _selectedJenisTransaksi,
                 items:
@@ -183,19 +187,18 @@ class _DataBarangState extends State<DataBarang> {
                   }
                   return null;
                 },
+                isExpanded: true,
+                icon: const Icon(Icons.arrow_drop_down),
               ),
               const SizedBox(height: 10),
-              const Text(
-                'Jenis Barang',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+
               const SizedBox(height: 8),
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  hintText: 'Jenis Barang',
+                  labelText: 'Jenis Transaksi',
                 ),
                 value: _selectedJenisBarang,
                 items:
@@ -293,7 +296,7 @@ class _DataBarangState extends State<DataBarang> {
                   ),
                 ],
               ),
-              
+
               const SizedBox(height: 30),
               SizedBox(
                 width: double.infinity,
@@ -305,14 +308,15 @@ class _DataBarangState extends State<DataBarang> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DetailBarang(
-                            tanggal: _selectedDate!,
-                            jenisTransaksi: _selectedJenisTransaksi!,
-                            jenisBarang: _selectedJenisBarang!,
-                            jumlahBarang: int.parse(barangController.text),
-                            hargaSatuan: hargaBarang[_selectedJenisBarang]!,
-                            totalHarga: totalHarga,
-                          ),
+                          builder:
+                              (context) => DetailBarang(
+                                tanggal: _selectedDate!,
+                                jenisTransaksi: _selectedJenisTransaksi!,
+                                jenisBarang: _selectedJenisBarang!,
+                                jumlahBarang: int.parse(barangController.text),
+                                hargaSatuan: hargaBarang[_selectedJenisBarang]!,
+                                totalHarga: totalHarga,
+                              ),
                         ),
                       );
                     }
