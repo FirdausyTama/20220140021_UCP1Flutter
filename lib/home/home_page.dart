@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ucp1/auth/login_page.dart';
+import 'package:ucp1/barang/data_barang.dart';
+import 'package:ucp1/pelanggan/data_pelanggan.dart';
+import 'package:ucp1/piket/data_piket.dart';
 
 class HomePage extends StatelessWidget {
   final String email;
@@ -8,6 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Container(
@@ -111,12 +115,12 @@ class HomePage extends StatelessWidget {
                       padding: EdgeInsets.all(10),
                       child: FilledButton(
                         onPressed: () {
-                          Navigator.pushAndRemoveUntil(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginPage(),
+                              builder: (context) => DataPiket(),
                             ),
-                            (Route<dynamic> route) => false,
+                            
                           );
                         },
                         style: FilledButton.styleFrom(
@@ -154,12 +158,12 @@ class HomePage extends StatelessWidget {
                       padding: EdgeInsets.all(10),
                       child: FilledButton(
                         onPressed: () {
-                          Navigator.pushAndRemoveUntil(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginPage(),
+                              builder: (context) => DataPelanggan(),
                             ),
-                            (Route<dynamic> route) => false,
+                            
                           );
                         },
                         style: FilledButton.styleFrom(
@@ -200,11 +204,11 @@ class HomePage extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                   child: FilledButton(
                     onPressed: () {
-                      //Navigator.pushAndRemoveUntil(
-                      //context,
-                      //MaterialPageRoute(builder: (context) => LoginPage()),
-                      //(Route<dynamic> route) => false,
-                      //);
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DataBarang()),
+                      
+                      );
                     },
                     style: FilledButton.styleFrom(
                       backgroundColor: Colors.blue,
