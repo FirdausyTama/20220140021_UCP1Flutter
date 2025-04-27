@@ -247,7 +247,13 @@ class _DataPelangganState extends State<DataPelanggan> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailPelanggan(nama: custController.text,),
+                              builder: (context) => DetailPelanggan(
+                                nama: custController.text,
+                                email: emailController.text,
+                                nohp: nohpController.text,
+                                alamat: alamatController.text,
+                                provinsi: provinsiController.text,
+                                pos: posController.text,),
                             ),
                           );
                         }
@@ -258,7 +264,7 @@ class _DataPelangganState extends State<DataPelanggan> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: Text('Masuk'),
+                      child: Text('Simpan'),
                     ),
                   ),
                   SizedBox(height: 25),
@@ -276,7 +282,7 @@ class _DataPelangganState extends State<DataPelanggan> {
                         _formKey.currentState?.reset();
                       },
                       style: OutlinedButton.styleFrom(
-                        side: BorderSide(color: Colors.blue),
+                        
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
