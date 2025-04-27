@@ -37,7 +37,11 @@ class _DataPiketState extends State<DataPiket> {
     setState(() {
       piketData.add({
         'nama': namaController.text,
-        'tanggal': DateFormat('EEEE, d MMMM yyyy').format(_selectedDate!),
+
+        'tanggal': DateFormat(
+          'EEEE, d MMMM yyyy',
+          'id_ID',
+        ).format(_selectedDate!),
         'tugas': _taskCtr.text,
       });
       _selectedDate = null;
@@ -112,6 +116,7 @@ class _DataPiketState extends State<DataPiket> {
                           ? 'Pilih Tanggal'
                           : DateFormat(
                             'EEEE, d MMMM yyyy',
+                            'id_ID',
                           ).format(_selectedDate!),
                   prefixIcon: const Padding(
                     padding: EdgeInsets.all(16),
@@ -215,14 +220,16 @@ class _DataPiketState extends State<DataPiket> {
                                     width: 400,
                                     height: 75,
                                     child: Padding(
-                                      padding: EdgeInsets.all(10),
+                                      padding: const EdgeInsets.all(10),
                                       child: FilledButton(
                                         onPressed: () {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder:
-                                                  (context) => DetailPiket(),
+                                                  (context) => DetailPiket(
+                                                    piketData: data,
+                                                  ),
                                             ),
                                           );
                                         },
@@ -240,7 +247,7 @@ class _DataPiketState extends State<DataPiket> {
                                           children: [
                                             Text(
                                               '${data['tugas']}',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16,
                                               ),
