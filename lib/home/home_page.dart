@@ -118,7 +118,7 @@ class HomePage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DataPiket(),
+                              builder: (context) => DataPiket(email: email),
                             ),
                             
                           );
