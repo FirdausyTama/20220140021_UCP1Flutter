@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ucp1/piket/detail_piket.dart';
 
 class DataPiket extends StatefulWidget {
   final String email;
@@ -171,18 +172,6 @@ class _DataPiketState extends State<DataPiket> {
                         if (_formKey.currentState!.validate() &&
                             _selectedDate != null) {
                           addTask();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Tugas berhasil ditambahkan'),
-                              backgroundColor: Colors.green,
-                              behavior: SnackBarBehavior.floating,
-                              margin: EdgeInsets.only(
-                                bottom: 70,
-                                left: 20,
-                                right: 20,
-                              ),
-                            ),
-                          );
                         }
                       },
                       style: FilledButton.styleFrom(
@@ -219,15 +208,53 @@ class _DataPiketState extends State<DataPiket> {
                           itemBuilder: (context, index) {
                             final data = piketData[index];
                             return Container(
-                              margin: const EdgeInsets.only(bottom: 8),
-                              padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.grey[200],
-                              ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [const SizedBox(height: 4)],
+                                children: [
+                                  SizedBox(
+                                    width: 400,
+                                    height: 75,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(10),
+                                      child: FilledButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder:
+                                                  (context) => DetailPiket(),
+                                            ),
+                                          );
+                                        },
+                                        style: FilledButton.styleFrom(
+                                          backgroundColor: Colors.blue,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              '${data['tugas']}',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                            const Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.white,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             );
                           },
