@@ -247,7 +247,7 @@ class _DataPelangganState extends State<DataPelanggan> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailPelanggan(),
+                              builder: (context) => DetailPelanggan(nama: custController.text,),
                             ),
                           );
                         }
