@@ -11,7 +11,17 @@ class DataBarang extends StatefulWidget {
 class _DataBarangState extends State<DataBarang> {
   final _formKey = GlobalKey<FormState>();
   final ScrollController _scrollController = ScrollController();
+  final TextEditingController barangController = TextEditingController();
+  final TextEditingController hargaController = TextEditingController();
 
+  final Map<String, double> hargaBarang = {
+    'Carrier': 540000,
+    'Sleeping Bag': 250000,
+    'Tenda': 700000,
+    'Sepatu': 350000,
+  };
+
+  String? _selectedJenisBarang;
   DateTime? _selectedDate;
   final List<Map<String, String>> piketData = [];
 
@@ -23,6 +33,8 @@ class _DataBarangState extends State<DataBarang> {
   @override
   void dispose() {
     _scrollController.dispose();
+    barangController.dispose();
+    hargaController.dispose();
     super.dispose();
   }
 
@@ -46,6 +58,24 @@ class _DataBarangState extends State<DataBarang> {
         );
       }
     });
+  }
+
+  String formatRupiah(double nilai) {
+    final formatter = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: '',
+      decimalDigits: 0,
+    );
+    return formatter.format(nilai).trim();
+  }
+
+  void updateHarga(String? jenisBarang) {
+    if (jenisBarang != null && hargaBarang.containsKey(jenisBarang)) {
+      setState(() {
+        _selectedJenisBarang = jenisBarang;
+        hargaController.text = formatRupiah(hargaBarang[jenisBarang]!);
+      });
+    }
   }
 
   @override
@@ -149,22 +179,115 @@ class _DataBarangState extends State<DataBarang> {
                   ),
                   hintText: 'Jenis Barang',
                 ),
+                value: _selectedJenisBarang,
                 items:
-                    ['Carrier', 'Sleeping Bag', 'Tenda', 'Sepatu'].map((
-                      String value,
-                    ) {
+                    hargaBarang.keys.toList().map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
                       );
                     }).toList(),
-                onChanged: (value) {},
+                onChanged: (value) {
+                  updateHarga(value);
+                },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Jenis barang harus dipilih';
                   }
                   return null;
                 },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
+                          child: Text(
+                            'Jumlah Barang',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: barangController,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            hintText: 'Jumlah Barang',
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Jumlah Barang tidak boleh kosong';
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(width: 16),
+
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
+                          child: Text(
+                            'Harga Satuan',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: hargaController,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            hintText: 'Harga Satuan',
+                            prefixIcon: const Padding(
+                              padding: EdgeInsets.all(16),
+                              child: Text(
+                                'Rp.',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Harga Satuan tidak boleh kosong';
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 50),
+              SizedBox(
+                width: 400,
+                height: 56,
+                child: FilledButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {}
+                  },
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text('Submit'),
+                ),
               ),
             ],
           ),
