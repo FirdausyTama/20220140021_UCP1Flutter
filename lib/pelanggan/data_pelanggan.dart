@@ -20,8 +20,7 @@ class _DataPelangganState extends State<DataPelanggan> {
   void initState() {
     super.initState();
   }
-  
-  
+
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
@@ -244,8 +243,7 @@ class _DataPelangganState extends State<DataPelanggan> {
                     height: 56,
                     child: FilledButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) 
-                        {
+                        if (_formKey.currentState!.validate()) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -269,17 +267,16 @@ class _DataPelangganState extends State<DataPelanggan> {
                     height: 56,
                     child: OutlinedButton(
                       onPressed: () {
-                        {
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailPelanggan(),
-                            ),
-                            (Route<dynamic> route) => false,
-                          );
-                        }
+                        custController.clear();
+                        emailController.clear();
+                        nohpController.clear();
+                        alamatController.clear();
+                        provinsiController.clear();
+                        posController.clear();
+                        _formKey.currentState?.reset();
                       },
-                      style: FilledButton.styleFrom(
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: Colors.blue),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
