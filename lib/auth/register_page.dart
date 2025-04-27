@@ -16,6 +16,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController konfirmasiController = TextEditingController();
   bool isPasswordVisible = false;
+  bool isPassword2Visible = false;
 
   @override
   void initState() {
@@ -26,6 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: Padding(
@@ -144,6 +146,12 @@ class _RegisterPageState extends State<RegisterPage> {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'No HP tidak boleh kosong';
+                                } else if (!RegExp(
+                                  r'^[0-9]+$',
+                                ).hasMatch(value)) {
+                                  return 'No HP hanya boleh angka';
+                                } else if (value.length < 10) {
+                                  return 'No HP minimal 10 digit';
                                 }
                                 return null;
                               },
@@ -224,7 +232,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ),
                             TextFormField(
-                              obscureText: !isPasswordVisible,
+                              obscureText: !isPassword2Visible,
                               controller: konfirmasiController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
@@ -240,11 +248,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                   child: GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        isPasswordVisible = !isPasswordVisible;
+                                        isPassword2Visible =
+                                            !isPassword2Visible;
                                       });
                                     },
                                     child: Icon(
-                                      isPasswordVisible
+                                      isPassword2Visible
                                           ? Icons.visibility_rounded
                                           : Icons.visibility_off_rounded,
                                       color: Colors.grey,
@@ -279,9 +288,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomePage(
-                            email: emailController.text,
-                          ),
+                          builder:
+                              (context) =>
+                                  HomePage(email: emailController.text),
                         ),
                         (Route<dynamic> route) => false,
                       );
