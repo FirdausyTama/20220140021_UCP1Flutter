@@ -21,6 +21,20 @@ class _DetailPelangganState extends State<DetailPelanggan> {
           style: TextStyle(color: Colors.white),
         ),
       ),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: AssetImage('assets/images/profil.jpg'),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
