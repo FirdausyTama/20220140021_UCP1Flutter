@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ucp1/barang/detail_barang.dart';
 
 class DataBarang extends StatefulWidget {
   const DataBarang({super.key});
@@ -13,6 +14,7 @@ class _DataBarangState extends State<DataBarang> {
   final ScrollController _scrollController = ScrollController();
   final TextEditingController barangController = TextEditingController();
   final TextEditingController hargaController = TextEditingController();
+  int totalHarga = 0;
 
   final Map<String, double> hargaBarang = {
     'Carrier': 540000,
@@ -22,6 +24,7 @@ class _DataBarangState extends State<DataBarang> {
   };
 
   String? _selectedJenisBarang;
+  String? _selectedJenisTransaksi;
   DateTime? _selectedDate;
   final List<Map<String, String>> piketData = [];
 
@@ -78,14 +81,24 @@ class _DataBarangState extends State<DataBarang> {
     }
   }
 
+  void calculateTotalPrice() {
+    int jumlahBarang = int.tryParse(barangController.text) ?? 0;
+    double hargaSatuan = _selectedJenisBarang != null ? 
+                        hargaBarang[_selectedJenisBarang]! : 0;
+
+    setState(() {
+      totalHarga = (jumlahBarang * hargaSatuan).toInt();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
         centerTitle: true,
-        iconTheme: IconThemeData(color: Colors.white),
-        title: Text('Pendataan Barang', style: TextStyle(color: Colors.white)),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text('Pendataan Barang', style: TextStyle(color: Colors.white)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -151,6 +164,7 @@ class _DataBarangState extends State<DataBarang> {
                   ),
                   hintText: 'Jenis Transaksi',
                 ),
+                value: _selectedJenisTransaksi,
                 items:
                     ['Barang Masuk', 'Barang Keluar'].map((String value) {
                       return DropdownMenuItem<String>(
@@ -158,10 +172,14 @@ class _DataBarangState extends State<DataBarang> {
                         child: Text(value),
                       );
                     }).toList(),
-                onChanged: (value) {},
+                onChanged: (value) {
+                  setState(() {
+                    _selectedJenisTransaksi = value;
+                  });
+                },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Nama harus dipilih';
+                    return 'Jenis transaksi harus dipilih';
                   }
                   return null;
                 },
@@ -220,6 +238,9 @@ class _DataBarangState extends State<DataBarang> {
                             ),
                             hintText: 'Jumlah Barang',
                           ),
+                          onChanged: (_) {
+                            calculateTotalPrice();
+                          },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Jumlah Barang tidak boleh kosong';
@@ -272,13 +293,29 @@ class _DataBarangState extends State<DataBarang> {
                   ),
                 ],
               ),
-              SizedBox(height: 50),
+              
+              const SizedBox(height: 30),
               SizedBox(
-                width: 400,
+                width: double.infinity,
                 height: 56,
                 child: FilledButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      calculateTotalPrice();
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailBarang(
+                            tanggal: _selectedDate!,
+                            jenisTransaksi: _selectedJenisTransaksi!,
+                            jenisBarang: _selectedJenisBarang!,
+                            jumlahBarang: int.parse(barangController.text),
+                            hargaSatuan: hargaBarang[_selectedJenisBarang]!,
+                            totalHarga: totalHarga,
+                          ),
+                        ),
+                      );
+                    }
                   },
                   style: FilledButton.styleFrom(
                     backgroundColor: Colors.blue,
@@ -286,7 +323,7 @@ class _DataBarangState extends State<DataBarang> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: Text('Submit'),
+                  child: const Text('Submit'),
                 ),
               ),
             ],
