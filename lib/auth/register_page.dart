@@ -265,9 +265,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 if (value == null || value.isEmpty) {
                                   return 'Konfirmasi Password tidak boleh kosong';
                                 }
-                                if (value != passwordController.text) {
-                                  return 'Password tidak sama';
-                                }
+                                
                                 return null;
                               },
                             ),
@@ -285,15 +283,26 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: FilledButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder:
-                              (context) =>
-                                  HomePage(email: emailController.text),
-                        ),
-                        (Route<dynamic> route) => false,
-                      );
+                      if (passwordController.text != konfirmasiController.text) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Password tidak sama',
+                            ),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (context) =>
+                                    HomePage(email: emailController.text),
+                          ),
+                          (Route<dynamic> route) => false,
+                        );
+                      }
                     }
                   },
                   style: FilledButton.styleFrom(
