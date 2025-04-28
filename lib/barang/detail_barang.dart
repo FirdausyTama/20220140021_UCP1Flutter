@@ -5,7 +5,7 @@ class DetailBarang extends StatelessWidget {
   final DateTime tanggal;
   final String jenisTransaksi;
   final String jenisBarang;
-  final int jumlahBarang;
+  final String jumlahBarang;
   final double hargaSatuan;
   final int totalHarga;
 
@@ -19,14 +19,6 @@ class DetailBarang extends StatelessWidget {
     required this.totalHarga,
   });
 
-  String formatRupiah(double nilai) {
-    final formatter = NumberFormat.currency(
-      locale: 'id_ID',
-      symbol: '',
-      decimalDigits: 0,
-    );
-    return formatter.format(nilai).trim();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +169,7 @@ class DetailBarang extends StatelessWidget {
                         style: TextStyle(fontSize: 16),
                       ),
                       Text(
-                        'Rp. ${formatRupiah(hargaSatuan)}',
+                        'Rp. $hargaSatuan',
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -199,7 +191,7 @@ class DetailBarang extends StatelessWidget {
                     children: [
                       const Text('Total Harga', style: TextStyle(fontSize: 16)),
                       Text(
-                        'Rp. ${formatRupiah(totalHarga.toDouble())}',
+                        'Rp. $totalHarga',
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,

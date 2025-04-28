@@ -313,7 +313,7 @@ class _DataBarangState extends State<DataBarang> {
                                 tanggal: _selectedDate!,
                                 jenisTransaksi: _selectedJenisTransaksi!,
                                 jenisBarang: _selectedJenisBarang!,
-                                jumlahBarang: int.parse(barangController.text),
+                                jumlahBarang: barangController.text,
                                 hargaSatuan: hargaBarang[_selectedJenisBarang]!,
                                 totalHarga: totalHarga,
                               ),
